@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
 
 	float _movementX;
 	string WALK_ANIMATION = "Walk";
+	string GROUND_TAG = "Ground";
+
+	bool _jump, _isGrounded;
 
 	Rigidbody2D _theRB;
 	Animator _theAnim;
@@ -34,13 +37,30 @@ public class Player : MonoBehaviour
 
 	void Start() 
 	{
-
+		_isGrounded = true;
 	}
 	
 	void Update() 
 	{
 		PlayerMoveKeyboard();
 		AnimatePlayer();
+
+		if (Input.GetButtonDown("Jump") && _isGrounded)
+		{
+			CallPlayerJump();
+		}
+	}
+
+	void FixedUpdate()
+	{
+		if(_jump)
+			PlayerJump();
+	}
+
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		if (other.gameObject.CompareTag(GROUND_TAG))
+			_isGrounded = true;
 	}
 	#endregion
 
@@ -74,6 +94,21 @@ public class Player : MonoBehaviour
 			//standing still
 			_theAnim.SetBool(WALK_ANIMATION, false);
 		}
+	}
+
+	void CallPlayerJump()
+	{
+		_jump = true;
+		_isGrounded = false;
+	}
+
+	void PlayerJump()
+	{
+		//if (Input.GetButtonDown("Jump"))
+		//{
+			_theRB.AddForce(new Vector2(0f, _jumpForce), ForceMode2D.Impulse);
+		_jump = false;
+		//}
 	}
 	#endregion
 }
