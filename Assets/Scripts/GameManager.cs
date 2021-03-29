@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,21 +31,22 @@ public class GameManager : MonoBehaviour
 	void Awake()
 	{
 		if (Instance == null)
+		{
 			Instance = this;
-		else if (Instance != this)
+			DontDestroyOnLoad(gameObject);
+		}
+		else
 			Destroy(gameObject);
-
-		
 	}
 
-	void Start() 
+	void OnEnable()
 	{
-		
+		SceneManager.sceneLoaded += OnLevelFinishedLoading;
 	}
-	
-	void Update() 
+
+	void OnDisable()
 	{
-		
+		SceneManager.sceneLoaded -= OnLevelFinishedLoading;
 	}
 	#endregion
 
@@ -55,6 +57,12 @@ public class GameManager : MonoBehaviour
 
 	#region Private Methods
 
-
+	void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+	{
+		if (scene.name == "Game")
+		{
+			Instantiate(_players[_playerIndex]);
+		}
+	}
 	#endregion
 }

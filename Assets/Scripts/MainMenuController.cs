@@ -36,7 +36,7 @@ public class MainMenuController : MonoBehaviour
 
 		GameManager.Instance.PlayerIndex = selectedPlayer;
 
-		//SceneManager.LoadScene("Game");
+		SceneManager.LoadScene("Game");
 	}
 	#endregion
 
