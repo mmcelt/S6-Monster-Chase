@@ -6,7 +6,17 @@ public class GameManager : MonoBehaviour
 {
 	#region Fields & Properties
 
+	public static GameManager Instance;
+
 	[SerializeField] GameObject[] _players;
+
+	int _playerIndex;
+
+	public int PlayerIndex
+	{
+		get { return _playerIndex; }
+		set { _playerIndex = value; }
+	}
 
 	#endregion
 
@@ -16,6 +26,16 @@ public class GameManager : MonoBehaviour
 	#endregion
 
 	#region Unity Methods
+
+	void Awake()
+	{
+		if (Instance == null)
+			Instance = this;
+		else if (Instance != this)
+			Destroy(gameObject);
+
+		
+	}
 
 	void Start() 
 	{

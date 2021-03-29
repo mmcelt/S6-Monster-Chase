@@ -34,6 +34,7 @@ public class MainMenuController : MonoBehaviour
 	{
 		int selectedPlayer = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
 
+		GameManager.Instance.PlayerIndex = selectedPlayer;
 
 		//SceneManager.LoadScene("Game");
 	}
