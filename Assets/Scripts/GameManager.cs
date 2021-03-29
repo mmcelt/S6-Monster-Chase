@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MainMenuController : MonoBehaviour
-{	
+public class GameManager : MonoBehaviour
+{
 	#region Fields & Properties
 
-	
+	[SerializeField] GameObject[] _players;
+
 	#endregion
 
 	#region Getters
@@ -30,13 +30,7 @@ public class MainMenuController : MonoBehaviour
 
 	#region Public Methods
 
-	public void PlayGame()
-	{
-		int selectedPlayer = int.Parse(UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name);
 
-
-		//SceneManager.LoadScene("Game");
-	}
 	#endregion
 
 	#region Private Methods
