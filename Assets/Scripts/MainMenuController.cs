@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
-{	
+{
 	#region Fields & Properties
 
-	
+
 	#endregion
 
 	#region Getters
@@ -19,12 +19,7 @@ public class MainMenuController : MonoBehaviour
 
 	void Start() 
 	{
-		
-	}
-	
-	void Update() 
-	{
-		
+		Time.timeScale = 1f;
 	}
 	#endregion
 
@@ -41,7 +36,6 @@ public class MainMenuController : MonoBehaviour
 	#endregion
 
 	#region Private Methods
-
 
 	#endregion
 }

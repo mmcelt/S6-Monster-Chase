@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	#region Fields & Properties
+
+	public static Action PlayerDied;
 
 	[SerializeField] float _moveForce = 10f;
 	[SerializeField] float _jumpForce = 11f;
@@ -66,6 +69,7 @@ public class Player : MonoBehaviour
 		if (other.gameObject.CompareTag(ENEMY_TAG))
 		{
 			Destroy(gameObject);
+			PlayerDied?.Invoke();
 		}
 	}
 
@@ -74,6 +78,7 @@ public class Player : MonoBehaviour
 		if (other.CompareTag(ENEMY_TAG))
 		{
 			Destroy(gameObject);
+			PlayerDied?.Invoke();
 		}
 	}
 	#endregion
